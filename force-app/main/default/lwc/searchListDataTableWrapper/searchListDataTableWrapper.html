@@ -1,0 +1,67 @@
+<!--
+  @description       : 
+  @author            : Manoj_Goswami
+  @group             : 
+  @last modified on  : 2023-03-07
+  @last modified by  : Manoj_Goswami
+-->
+<template>
+    <template if:true={hasMessage}>
+        <div class={pageMessageParentDivClass} role="alert">
+            <span class={pageMessageChildDivClass} title={messageTitle}>
+                <lightning-icon icon-name={messageIcon} alternative-text={messageTitle} title={messageTitle} size="small"></lightning-icon>
+            </span>
+            <h2>{messageSummary}</h2>
+        </div>
+    </template>
+    <template if:true={hasRecords}>
+        <div>
+            <!--
+            <lightning-card title={objectPluralName} icon-name="standard:account">
+                <lightning-input type="text" placeholder="Enter Search Text.." slot="actions" onchange={handleSearchText} disabled={disableSearch}></lightning-input>
+            </lightning-card>
+            -->
+            <div>
+                <template if:false={disableSort}>
+                    <lightning-datatable
+                            key-field="id"
+                            columns={columns}
+                            data={viewRecords}
+                            hide-checkbox-column
+                            default-sort-direction={defaultSortDirection}
+                            sorted-direction={sortDirection}
+                            sorted-by={sortedBy}
+                            onsort={onHandleSort}>
+                    </lightning-datatable>
+                </template>
+                <template if:true={disableSort}>
+                    <lightning-datatable
+                            key-field="id"
+                            columns={columns}
+                            data={viewRecords}
+                            hide-checkbox-column>
+                    </lightning-datatable>
+                </template>
+                
+            </div>
+            <div>
+                <div class="slds-m-around_medium slds-align_absolute-center">
+                    <div>
+                        <lightning-button-group>
+                            <lightning-button label="First" onclick={goToFirst} disabled={disableBack}></lightning-button>
+                            <lightning-button label="Previous" onclick={goToPrevious} disabled={disableBack}></lightning-button>
+                        </lightning-button-group>
+                        <span>
+                            Displaying {beginIndex} to {endndex} of {recordCount} records.   
+                            Page {currentPage} of {totalPages}. 
+                        </span>
+                        <lightning-button-group> 
+                            <lightning-button label="Next" onclick={goToNext} disabled={disableForward}></lightning-button>
+                            <lightning-button label="Last" onclick={goToLast} disabled={disableForward}></lightning-button>
+                        </lightning-button-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

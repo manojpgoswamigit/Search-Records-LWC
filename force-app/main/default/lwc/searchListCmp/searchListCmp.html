@@ -1,0 +1,99 @@
+<!--
+  @description       : 
+  @author            : Manoj_Goswami
+  @group             : 
+  @last modified on  : 2023-03-07
+  @last modified by  : Manoj_Goswami
+-->
+<template>
+    <lightning-layout multiple-rows="true" class="slds-box slds-theme_shade">
+      <!-- first row -->
+      <lightning-layout-item size="12">
+        <lightning-layout multiple-rows="false">
+          <lightning-layout-item padding="around-small" size="4">
+            <lightning-input
+              type="text"
+              label="Keyword"
+              value={objectName}
+              onchange={handleSearchTextChange}
+            ></lightning-input>
+          </lightning-layout-item>
+          <lightning-layout-item padding="around-small" size="4">
+            <lightning-combobox
+              name="progress"
+              label="Category"
+              value={industryValue}
+              placeholder="Choose Category.."
+              options={options}
+              onchange={handleTypeChange}
+            >
+            </lightning-combobox>
+          </lightning-layout-item>
+          <lightning-layout-item padding="around-small" size="1">
+            <div class="slds-m-around_small">
+              <lightning-button
+                variant="brand"
+                label="Search"
+                title="Search"
+                onclick={handleSearch}
+                class="slds-m-left_x-small slds-align_absolute-center"
+              ></lightning-button>
+            </div>
+          </lightning-layout-item>
+        </lightning-layout>
+      </lightning-layout-item>
+  
+      <!-- second row -->
+      <lightning-layout-item size="12">
+        <lightning-layout multiple-rows="false">
+          <lightning-layout-item padding="around-small" size="4">
+            <lightning-input
+              type="date"
+              label="From"
+              value={objectName}
+              onchange={handleFromDateChange}
+            ></lightning-input>
+          </lightning-layout-item>
+          <lightning-layout-item padding="around-small" size="4">
+            <lightning-input
+              type="date"
+              label="To"
+              value={objectName}
+              onchange={handleToDateChange}
+            ></lightning-input>
+          </lightning-layout-item>
+          <lightning-layout-item padding="around-small" margin="top-large" size="1">
+            <div class="slds-m-around_small">
+              <lightning-button
+                variant="brand"
+                label="Reset"
+                title="Reset"
+                onclick={handleReset}
+                class="slds-m-left_x-small slds-align_absolute-center"
+              ></lightning-button>
+            </div>
+          </lightning-layout-item>
+        </lightning-layout>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <!-- data table 
+    <template lwc:if={showTable}>-->
+      <lightning-layout>
+        <lightning-layout-item padding="around-small" size="12">
+          
+          <c-search-list-data-table-wrapper
+            object-name={objectNameToSend}
+            fields-to-query={fieldNamesToSend}
+            filters={filtersToSend}
+            records-per-page={recordsPerPageToSend}
+            disable-sort={disableSortToSend}
+            disable-search={disableSearchToSend}
+          ></c-search-list-data-table-wrapper>
+        
+        </lightning-layout-item>
+      </lightning-layout>
+    <!-- </template> -->
+  </template>
+  
+  <!--<c-data-table-wrapper object-name="Opportunity" fields-to-query="Name, Type, StageName, CloseDate, Account.Name" filters="Name != null" records-per-page="20" disable-sort disable-search></c-data-table-wrapper>-->
