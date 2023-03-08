@@ -34,7 +34,7 @@ export default class SearchListCmp extends LightningElement {
   defaultValues() {
     this.objectNameToSend = "Account";
     this.fieldNamesToSend =
-      "Name, Industry, Phone";
+      "Name, Industry, Phone, CreatedDate";
     this.defaultFilter = "Id != NULL";
     this.filtersToSend = this.defaultFilter;
     this.recordsPerPageToSend = 200;
